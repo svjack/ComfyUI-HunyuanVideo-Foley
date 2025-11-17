@@ -1,0 +1,264 @@
+{
+  "4": {
+    "inputs": {
+      "vae_name": "vae_128d_48k_fp16.safetensors",
+      "synchformer_name": "synchformer_state_dict_fp16.safetensors"
+    },
+    "class_type": "HunyuanDependenciesLoader",
+    "_meta": {
+      "title": "Hunyuan-Foley Dependencies Loader"
+    }
+  },
+  "17": {
+    "inputs": {
+      "index": 1,
+      "audio_batch": [
+        "40",
+        1
+      ]
+    },
+    "class_type": "SelectAudioFromBatch",
+    "_meta": {
+      "title": "Select Audio From Batch"
+    }
+  },
+  "23": {
+    "inputs": {
+      "audioUI": "",
+      "audio": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "PreviewAudio",
+    "_meta": {
+      "title": "预览音频"
+    }
+  },
+  "40": {
+    "inputs": {
+      "frame_rate": [
+        "77",
+        0
+      ],
+      "duration": [
+        "77",
+        7
+      ],
+      "prompt": [
+        "82",
+        0
+      ],
+      "negative_prompt": "",
+      "cfg_scale": 4.5,
+      "steps": 50,
+      "sampler": "euler",
+      "batch_size": 1,
+      "seed": 55580,
+      "force_offload": false,
+      "hunyuan_model": [
+        "73",
+        0
+      ],
+      "hunyuan_deps": [
+        "4",
+        0
+      ],
+      "image": [
+        "76",
+        0
+      ],
+      "torch_compile_cfg": [
+        "75",
+        0
+      ],
+      "block_swap_args": [
+        "74",
+        0
+      ]
+    },
+    "class_type": "HunyuanFoleySampler",
+    "_meta": {
+      "title": "Hunyuan-Foley Sampler"
+    }
+  },
+  "57": {
+    "inputs": {
+      "frame_rate": [
+        "77",
+        0
+      ],
+      "loop_count": 0,
+      "filename_prefix": "AnimateDiff",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false,
+      "images": [
+        "76",
+        0
+      ],
+      "audio": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "58": {
+    "inputs": {
+      "audioUI": "",
+      "audio": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "PreviewAudio",
+    "_meta": {
+      "title": "预览音频"
+    }
+  },
+  "73": {
+    "inputs": {
+      "model_name": "hunyuanvideo_foley.safetensors",
+      "precision": "bf16",
+      "quantization": "auto"
+    },
+    "class_type": "HunyuanModelLoader",
+    "_meta": {
+      "title": "Hunyuan-Foley Model Loader"
+    }
+  },
+  "74": {
+    "inputs": {
+      "blocks_to_swap": 30,
+      "use_non_blocking": false,
+      "prefetch_blocks": 1,
+      "block_swap_debug": false
+    },
+    "class_type": "HunyuanBlockSwap",
+    "_meta": {
+      "title": "Hunyuan-Foley BlockSwap Settings"
+    }
+  },
+  "75": {
+    "inputs": {
+      "backend": "inductor",
+      "fullgraph": false,
+      "mode": "default",
+      "dynamic": "false",
+      "dynamo_cache_limit": 64
+    },
+    "class_type": "HunyuanFoleyTorchCompile",
+    "_meta": {
+      "title": "Hunyuan-Foley Torch Compile"
+    }
+  },
+  "76": {
+    "inputs": {
+      "video": "完整王翔口交_00016.mp4",
+      "force_rate": 0,
+      "custom_width": 512,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "77": {
+    "inputs": {
+      "video_info": [
+        "76",
+        3
+      ]
+    },
+    "class_type": "VHS_VideoInfo",
+    "_meta": {
+      "title": "Video Info 🎥🅥🅗🅢"
+    }
+  },
+  "78": {
+    "inputs": {
+      "preview": "16.0",
+      "source": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "预览任意"
+    }
+  },
+  "79": {
+    "inputs": {
+      "preview": "25.3125",
+      "source": [
+        "77",
+        7
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "预览任意"
+    }
+  },
+  "80": {
+    "inputs": {
+      "model_name": "Qwen3-VL-2B-Instruct",
+      "quantization": "None (FP16)",
+      "attention_mode": "auto",
+      "preset_prompt": "🖼️ Detailed Description",
+      "custom_prompt": "使用一句简单的英文描述视频内容，重点描述不同的动作伴随的声音，突出肌肤摩擦声和口水声，并选取合适的钢琴音乐作为背景音乐，只直接给出英文结果，不进行任何其它讨论。",
+      "max_tokens": 512,
+      "keep_model_loaded": true,
+      "seed": 498078735,
+      "video": [
+        "76",
+        0
+      ]
+    },
+    "class_type": "AILab_QwenVL",
+    "_meta": {
+      "title": "QwenVL"
+    }
+  },
+  "81": {
+    "inputs": {
+      "preview": "A man stands in a studio, then leans forward with his mouth open and tongue out as he touches the other's chest while making soft sucking sounds on camera under red lighting; background music is classical piano playing softly throughout.,skin friction sound, slobbering sound, The background is a light piano melody.",
+      "source": [
+        "82",
+        0
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "预览任意"
+    }
+  },
+  "82": {
+    "inputs": {
+      "string_a": [
+        "80",
+        0
+      ],
+      "string_b": ",skin friction sound, slobbering sound, The background is a light piano melody.",
+      "delimiter": ""
+    },
+    "class_type": "StringConcatenate",
+    "_meta": {
+      "title": "Concatenate"
+    }
+  }
+}
